@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections;
 
-//此脚本挂载在PlayerRespawn上
+//此脚本挂载在PlayerPerfab上
 namespace Player
 {
 	public class OnRespawn : MonoBehaviour {
