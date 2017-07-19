@@ -1,27 +1,27 @@
 using UnityEngine;
 using System.Collections;
 
-public class WorldCompInit : MonoBehaviour {
-
-	public GameObject CameraPrefab;
-	public GameObject EnvFxPrefab;
-	public GameObject WeaponsPrefab;
-	public GameObject PlayerPrefab;
-	public GameObject CanvasPrefab;
-
-	void Start () {
-	
-	}
-	
-	private void FixedUpdate()
-	{
-		if (Input.GetButton("Jump"))
+namespace Player
+{
+	public class OnRespawn : MonoBehaviour {
+		void Start()
 		{
-			Instantiate(EnvFxPrefab, transform.position, transform.rotation);
-			Instantiate(PlayerPrefab, transform.position, transform.rotation);
-			Instantiate(CameraPrefab, transform.position, transform.rotation);
-			Instantiate(WeaponsPrefab, transform.position, transform.rotation);
-			Instantiate(CanvasPrefab, transform.position, transform.rotation);
+			if (GameObject.Find("CameraInit"))
+			{
+				Destroy(GameObject.Find("CameraInit"));
+			}
+
+			GameObject.Find("ItemChecker").GetComponent<ItemsAround>().enabled = true;
+			GameObject.Find("CoverChecker").GetComponent<CoverTargetLogic>().enabled = true;
+			GameObject.Find("Player Y_Bot").GetComponent<PlayerAtts>().enabled = true;
+			GameObject.Find("Player Y_Bot").GetComponent<SetupAndUserInput>().enabled = true;
+			GameObject.Find("Player Y_Bot").GetComponent<Animator>().enabled = true;
+			GameObject.Find("CamRig").GetComponent<NewRespawn>().enabled = true;
+		}
+
+		// Update is called once per frame
+		void Update() {
+
 		}
 	}
 }
